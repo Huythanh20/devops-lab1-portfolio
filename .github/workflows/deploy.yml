@@ -1,0 +1,39 @@
+
+# Lab 1 - DevOps CI/CD Pipeline
+
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Validate HTML
+        run: |
+          echo "Checking index.html exists..."
+          if [ -f "index.html" ]; then
+            echo "index.html found!"
+            echo "File size: $(wc -c < index.html) bytes"
+          else
+            echo "index.html NOT found!"
+            exit 1
+          fi
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./
+          publish_branch: gh-pages
+          commit_message: "Auto-deploy from CI pipeline"
