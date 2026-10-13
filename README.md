@@ -1,2 +1,8 @@
 # devops-lab1-portfolio
-Lab 1 — DevOps Course: My First CI/CD Pipeline
+Thông tin sinh viên
+
+Họ và tên: Dương Lang Thành
+
+Tên bài thực hành: DevOps Lab 1 — Tổng quan CI/CD Pipeline
+
+Repository: devops-lab1-portfolio
